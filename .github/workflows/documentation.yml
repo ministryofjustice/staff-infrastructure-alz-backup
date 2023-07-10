@@ -1,0 +1,32 @@
+name: Generate terraform docs
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      ACCESS_TOKEN: ${{ github.actor == 'dependabot[bot]' && secrets.PAT_dependabot01 || secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4.1.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ env.ACCESS_TOKEN }}
+
+      - name: Print Actor Name
+        run: echo "The actor is ${{ github.actor }}"
+
+      - name: Render terraform docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          find-dir: ./terraform
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+        env:
+          ACCESS_TOKEN: ${{ github.actor == 'dependabot[bot]' && secrets.PAT_dependabot01 || secrets.GITHUB_TOKEN }}
