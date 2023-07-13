@@ -13,9 +13,9 @@ This configuration is intended for managing backups for existing VMs. The VMs an
 ## Usage
 
 The configuration uses several input variables to customize the backup policies and VMs.
-Users can specify the details of their VMs and backup policies in a the auto.tfvars files. 
+Users can specify the details of their VMs and backup policies in a the auto.tfvars files.
 
-- `backup-policies.auto.tfvars`: This contains `backup_policies` which is a list of backup policies. Each item in the list is an object that specifies     backup policy.
+- `backup-policies.auto.tfvars`: This contains `backup_policies` which is a list of backup policies. Each item in the list is an object that specifies backup policy.
 
 - `vm-backup-config.auto.tfvars`: This contains `vms` which is a A map where each key is a VM name, and each value is an object containing the resource group name and the backup policy name for that VM.
 
@@ -24,6 +24,7 @@ Users can specify the details of their VMs and backup policies in a the auto.tfv
 - `vault_name`: The name of the Recovery Services vault.
 
 ## Core Files
+
 This repository includes the following files:
 
 `variables.tf`: Contains the declaration of variables used in the configuration.

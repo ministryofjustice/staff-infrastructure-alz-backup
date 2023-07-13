@@ -1,10 +1,10 @@
 backup_policies = [
   {
-    name = "Hourly_backup_policy_1"
+    name        = "Hourly_backup_policy_1"
     policy_type = "V2"
     backup = {
-      frequency = "Hourly"
-      time = "23:30"
+      frequency     = "Hourly"
+      time          = "23:30"
       hour_interval = "4"
       hour_duration = "12"
     }
@@ -13,11 +13,11 @@ backup_policies = [
     }
   },
   {
-    name = "Daily_backup_policy_1"
+    name        = "Daily_backup_policy_1"
     policy_type = "V2"
     backup = {
-      frequency = "Daily"
-      time = "23:00"
+      frequency     = "Daily"
+      time          = "23:00"
       hour_interval = "1"
       hour_duration = "24"
     }
