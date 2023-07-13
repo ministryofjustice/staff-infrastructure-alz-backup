@@ -71,4 +71,3 @@ stages:
       workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/dev/hub
       yamlenv: $(devyamlenv)
       terraformVersion: "1.2.6"
-
