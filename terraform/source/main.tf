@@ -2,20 +2,56 @@
 resource "azurerm_backup_policy_vm" "policy" {
   for_each = { for bp in var.backup_policies : bp.name => bp }
 
-  name                = each.value.name
-  resource_group_name = data.azurerm_resource_group.vault.name
-  recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
-  policy_type         = each.value.policy_type
+  name                 = each.value.name
+  resource_group_name  = data.azurerm_resource_group.vault.name
+  recovery_vault_name  = data.azurerm_recovery_services_vault.existing.name
+  policy_type          = each.value.policy_type
 
-  backup {
-    frequency     = each.value.backup.frequency
-    time          = each.value.backup.time
-    hour_interval = each.value.backup.hour_interval
-    hour_duration = each.value.backup.hour_duration
+  dynamic "backup" {
+    for_each = [each.value.backup]
+    content {
+      frequency = backup.value.frequency
+      time = backup.value.time
+      dynamic "hourly" {
+        for_each = backup.value.frequency == "Hourly" ? [1] : []
+        content {
+          hour_interval = lookup(backup.value, "hour_interval", null)
+          hour_duration = lookup(backup.value, "hour_duration", null)
+        }
+      }
+    }
   }
 
-  retention_daily {
-    count = each.value.retention_daily.count
+  dynamic "retention_daily" {
+    for_each = lookup(each.value, "retention_daily", null) != null ? [each.value.retention_daily] : []
+    content {
+      count = retention_daily.value.count
+    }
+  }
+
+  dynamic "retention_weekly" {
+    for_each = lookup(each.value, "retention_weekly", null) != null ? [each.value.retention_weekly] : []
+    content {
+      days_of_the_week = retention_weekly.value.days_of_the_week
+      count = retention_weekly.value.count
+    }
+  }
+
+  dynamic "retention_monthly" {
+    for_each = lookup(each.value, "retention_monthly", null) != null ? [each.value.retention_monthly] : []
+    content {
+      days_of_the_month = retention_monthly.value.days_of_the_month
+      count = retention_monthly.value.count
+    }
+  }
+
+  dynamic "retention_yearly" {
+    for_each = lookup(each.value, "retention_yearly", null) != null ? [each.value.retention_yearly] : []
+    content {
+      months_of_the_year = retention_yearly.value.months_of_the_year
+      days_of_the_month = retention_yearly.value.days_of_the_month
+      count = retention_yearly.value.count
+    }
   }
 }
 
