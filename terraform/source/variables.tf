@@ -33,11 +33,11 @@ variable "vms" {
 variable "backup_policies" {
   description = "The backup policies."
   type = list(object({
-    name = string
+    name        = string
     policy_type = string
     backup = object({
-      frequency = string
-      time = string
+      frequency     = string
+      time          = string
       hour_interval = optional(string)
       hour_duration = optional(string)
     })
@@ -46,16 +46,16 @@ variable "backup_policies" {
     }))
     retention_weekly = optional(object({
       days_of_the_week = list(string)
-      count = number
+      count            = number
     }))
     retention_monthly = optional(object({
       days_of_the_month = list(string)
-      count = number
+      count             = number
     }))
     retention_yearly = optional(object({
       months_of_the_year = list(string)
-      days_of_the_month = list(string)
-      count = number
+      days_of_the_month  = list(string)
+      count              = number
     }))
   }))
 }
