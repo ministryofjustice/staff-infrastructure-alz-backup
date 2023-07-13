@@ -1,0 +1,74 @@
+parameters:
+  - name: TerraformOperation
+    displayName: Terraform Operation
+    values:
+      - plan
+      - apply
+    default: plan
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - terraform/source
+      - terraform/environments/dev/hub
+      - terraform/environments/pre-prod/hub
+      - terraform/environments/prod/hub
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - terraform/source
+      - terraform/environments/dev/hub
+      - terraform/environments/pre-prod/hub
+      - terraform/environments/prod/hub
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: ministryofjustice/staff-infrastructure-alz-ci-templates
+      ref: refs/heads/main
+      endpoint: staff-infrastructure-alz-ci-templates
+
+variables:
+  - group: "github"
+  - name: devyamlenv
+    value: dev_noapproval
+  - name: preprodyamlenv
+    ${{ if eq(variables['Build.Reason'],'PullRequest') }}:
+      value: preprod_noapproval
+    ${{ if ne(variables['Build.Reason'],'PullRequest') }}:
+      value: preprod_approval
+  - name: prodyamlenv
+    ${{ if eq(variables['Build.Reason'],'PullRequest') }}:
+      value: prod_noapproval
+    ${{ if ne(variables['Build.Reason'],'PullRequest') }}:
+      value: prod_approval
+
+stages:
+  - template: azdo/template-terraform-deploy-stage.yml@templates
+    parameters:
+      backendAzureRmResourceGroupName: "rg-terraform-statefiles-001"
+      backendAzureRmStorageAccountName: "samojtfstate001"
+      backendAzureRmContainerName: "tfstate"
+      backendAzureRmKey: "hub-vm-backup.terraform.tfstate"
+      backendServiceArm: "scVLZ"
+      deployFlag: true
+      environmentName: dev
+      githubPat: $(GITHUB_PAT)
+      stageName: dev
+      stageDisplayName: Development
+      spokeName: hub-alerts
+      subscription_id: c5551d23-f465-4e90-9f4d-ef19eecff6a0
+      tenant_id: 0bb413d7-160d-4839-868a-f3d46537f6af
+      terraformOperation: ${{ parameters.terraformOperation }}
+      workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/dev/hub
+      yamlenv: $(devyamlenv)
+      terraformVersion: "1.2.6"
+
