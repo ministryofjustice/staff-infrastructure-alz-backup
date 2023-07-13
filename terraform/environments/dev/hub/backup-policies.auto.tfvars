@@ -18,7 +18,7 @@ backup_policies = [
     backup = {
       frequency     = "Daily"
       time          = "23:00"
-      hour_interval = "1"
+      hour_interval = "8"
       hour_duration = "24"
     }
     retention_daily = {
