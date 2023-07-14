@@ -1,12 +1,11 @@
 
-
 resource "azurerm_backup_policy_vm" "policy" {
   for_each = { for bp in var.backup_policies : bp.name => bp }
 
-  name                = each.value.name
-  resource_group_name = data.azurerm_resource_group.vault.name
-  recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
-  policy_type         = each.value.policy_type
+  name                 = each.value.name
+  resource_group_name  = data.azurerm_resource_group.vault.name
+  recovery_vault_name  = data.azurerm_recovery_services_vault.existing.name
+  policy_type          = each.value.policy_type
 
   backup {
     frequency     = each.value.backup.frequency
@@ -26,24 +25,22 @@ resource "azurerm_backup_policy_vm" "policy" {
     for_each = lookup(each.value, "retention_weekly", null) != null ? [each.value.retention_weekly] : []
     content {
       weekdays = retention_weekly.value.weekdays
-      count    = retention_weekly.value.count
+      count = retention_weekly.value.count
     }
   }
 
   dynamic "retention_monthly" {
     for_each = lookup(each.value, "retention_monthly", null) != null ? [each.value.retention_monthly] : []
     content {
-      days_of_the_month = retention_monthly.value.days_of_the_month
-      count             = retention_monthly.value.count
+      count = retention_monthly.value.count
     }
   }
 
   dynamic "retention_yearly" {
     for_each = lookup(each.value, "retention_yearly", null) != null ? [each.value.retention_yearly] : []
     content {
-      months            = retention_yearly.value.months
+      months           = retention_yearly.value.months
       weeks_of_the_year = retention_yearly.value.weeks_of_the_year
-      days_of_the_week  = retention_yearly.value.days_of_the_week
       count             = retention_yearly.value.count
     }
   }
