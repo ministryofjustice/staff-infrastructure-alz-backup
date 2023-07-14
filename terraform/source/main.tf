@@ -36,13 +36,6 @@ resource "azurerm_backup_policy_vm" "policy" {
     }
   }
 
-  dynamic "retention_yearly" {
-    for_each = lookup(each.value, "retention_yearly", null) != null ? [each.value.retention_yearly] : []
-    content {
-      months = retention_yearly.value.months
-      count  = retention_yearly.value.count
-    }
-  }
 }
 
 resource "azurerm_backup_protected_vm" "vm" {
