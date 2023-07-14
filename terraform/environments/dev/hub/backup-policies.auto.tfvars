@@ -21,5 +21,19 @@ backup_policies = [
       weekdays = ["Monday"]
       count = 4
     }
+  },
+  {
+    name = "yearly_backup_policy_1"
+    policy_type = "V2"
+    backup = {
+      frequency = "Yearly"
+      time = "23:00"
+    }
+    retention_yearly = {
+      months = ["January", "July"]
+      weeks_of_the_year = ["First", "Third"]
+      days_of_the_week = ["Wednesday", "Friday"]
+      count = 5
+    }
   }
 ]

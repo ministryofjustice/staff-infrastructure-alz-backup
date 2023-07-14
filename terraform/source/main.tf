@@ -8,14 +8,11 @@ resource "azurerm_backup_policy_vm" "policy" {
   recovery_vault_name  = data.azurerm_recovery_services_vault.existing.name
   policy_type          = each.value.policy_type
 
-  dynamic "backup" {
-    for_each = [each.value.backup]
-    content {
-      frequency     = backup.value.frequency
-      time          = backup.value.time
-      hour_interval = lookup(backup.value, "hour_interval", null)
-      hour_duration = lookup(backup.value, "hour_duration", null)
-    }
+  backup {
+    frequency     = each.value.backup.frequency
+    time          = each.value.backup.time
+    hour_interval = lookup(each.value.backup, "hour_interval", null)
+    hour_duration = lookup(each.value.backup, "hour_duration", null)
   }
 
   dynamic "retention_daily" {
@@ -36,8 +33,7 @@ resource "azurerm_backup_policy_vm" "policy" {
   dynamic "retention_monthly" {
     for_each = lookup(each.value, "retention_monthly", null) != null ? [each.value.retention_monthly] : []
     content {
-      weeks_of_the_month = retention_monthly.value.weeks_of_the_month
-      days_of_the_week = retention_monthly.value.days_of_the_week
+      days_of_the_month = retention_monthly.value.days_of_the_month
       count = retention_monthly.value.count
     }
   }
@@ -45,9 +41,10 @@ resource "azurerm_backup_policy_vm" "policy" {
   dynamic "retention_yearly" {
     for_each = lookup(each.value, "retention_yearly", null) != null ? [each.value.retention_yearly] : []
     content {
-      months_of_the_year = retention_yearly.value.months_of_the_year
-      days_of_the_month = retention_yearly.value.days_of_the_month
-      count = retention_yearly.value.count
+      months           = retention_yearly.value.months
+      weeks_of_the_year = retention_yearly.value.weeks_of_the_year
+      days_of_the_week  = retention_yearly.value.days_of_the_week
+      count             = retention_yearly.value.count
     }
   }
 }
