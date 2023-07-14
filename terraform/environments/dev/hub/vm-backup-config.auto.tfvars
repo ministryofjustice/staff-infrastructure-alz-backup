@@ -3,11 +3,11 @@ vault_name                = "rsv-hub-core-001"
 vms = {
   vm1 = {
     resource_group = "rg-hub-poltest-01"
-    backup_policy  = "Hourly_backup_policy_1"
+    backup_policy  = "daily_backup_policy_1"
   }
   vm2 = {
     resource_group = "rg-hub-poltest-01"
-    backup_policy  = "Daily_backup_policy_1"
+    backup_policy  = "weekly_backup_policy_1"
   }
 }
 
