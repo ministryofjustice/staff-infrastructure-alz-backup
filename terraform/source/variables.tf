@@ -13,12 +13,14 @@ variable "vms" {
   type = map(object({
     resource_group = string
     backup_policy  = string
+    backup_policy  = string
   }))
 }
 
 variable "backup_policies" {
   description = "The backup policies."
   type = list(object({
+    name        = string
     name        = string
     policy_type = string
     backup = object({
