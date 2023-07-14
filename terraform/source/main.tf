@@ -40,7 +40,7 @@ resource "azurerm_backup_policy_vm" "policy" {
     for_each = lookup(each.value, "retention_yearly", null) != null ? [each.value.retention_yearly] : []
     content {
       months            = retention_yearly.value.months
-      weeks_of_the_year = retention_yearly.value.weeks_of_the_year
+      weeks             = retention_yearly.value.weeks
       count             = retention_yearly.value.count
     }
   }

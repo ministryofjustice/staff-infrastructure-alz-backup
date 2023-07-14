@@ -31,7 +31,7 @@ backup_policies = [
     }
     retention_yearly = {
       months            = ["January", "July"]
-      weeks_of_the_year = ["First", "Third"]
+      weeks             = ["First", "Third"]
       count             = 5
     }
   }

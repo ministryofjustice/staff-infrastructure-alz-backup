@@ -39,7 +39,7 @@ variable "backup_policies" {
     }))
     retention_yearly = optional(object({
       months            = list(string)
-      weeks_of_the_year = list(string)
+      weeks             = list(string)
       count             = number
     }))
   }))
