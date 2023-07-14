@@ -23,17 +23,17 @@ backup_policies = [
     }
   },
   {
-    name = "yearly_backup_policy_1"
+    name        = "yearly_backup_policy_1"
     policy_type = "V2"
     backup = {
       frequency = "Yearly"
-      time = "23:00"
+      time      = "23:00"
     }
     retention_yearly = {
-      months = ["January", "July"]
+      months            = ["January", "July"]
       weeks_of_the_year = ["First", "Third"]
-      days_of_the_week = ["Wednesday", "Friday"]
-      count = 5
+      days_of_the_week  = ["Wednesday", "Friday"]
+      count             = 5
     }
   }
 ]
