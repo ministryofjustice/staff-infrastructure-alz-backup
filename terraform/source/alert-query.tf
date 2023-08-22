@@ -12,7 +12,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon.id
+    action_groups = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
   }
 
   frequency = "PT1H"  # Evaluate the conditions every 1 Hour
@@ -40,7 +40,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon.id
+    action_groups = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
   }
 
   frequency = "PT1H"  # Evaluate the conditions every 1 Hour
