@@ -1,7 +1,7 @@
 resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
   name                = "BackupJobsFailed"
   resource_group_name = var.vault_resource_group_name
-  scopes              = [data.azurerm_recovery_services_vault.existing.id] # ID of Recovery Services Vault
+  scopes              = [data.azurerm_recovery_services_vault.existing.id]  # ID of Recovery Services Vault
 
   criteria {
     metric_namespace = "Microsoft.RecoveryServices/vaults"
@@ -12,10 +12,10 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
   }
 
   action {
-    action_groups = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
+    action_group_id = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
   }
 
-  frequency = "PT1H" # Evaluate the conditions every 1 Hour
+  frequency = "PT1H"  # Evaluate the conditions every 1 Hour
 
   lifecycle {
     ignore_changes = [
@@ -29,7 +29,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
 resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   name                = "BackupJobsCompletedAlert"
   resource_group_name = var.vault_resource_group_name
-  scopes              = [data.azurerm_recovery_services_vault.existing.id] # ID of Recovery Services Vault # ID of Recovery Services Vault
+  scopes              = [data.azurerm_recovery_services_vault.existing.id]  # ID of Recovery Services Vault # ID of Recovery Services Vault
 
   criteria {
     metric_namespace = "Microsoft.RecoveryServices/vaults"
@@ -40,10 +40,10 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   }
 
   action {
-    action_groups = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
+    action_group_id = [azurerm_monitor_action_group.alz_mon[each.value.action_group].id]
   }
 
-  frequency = "PT1H" # Evaluate the conditions every 1 Hour
+  frequency = "PT1H"  # Evaluate the conditions every 1 Hour
 
   lifecycle {
     ignore_changes = [
