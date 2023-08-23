@@ -4,14 +4,14 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
   name                = "BackupJobsFailed"
   resource_group_name = var.vault_resource_group_name
   scopes              = [data.azurerm_recovery_services_vault.existing.id]
- 
-  
+
+
   criteria {
     metric_namespace = "Microsoft.RecoveryServices/vaults"
-    metric_name = "BackupJobsFailed"
-    aggregation = "Total"
-    operator    = "GreaterThan"
-    threshold   = var.alert_backup_jobs_failed.threshold
+    metric_name      = "BackupJobsFailed"
+    aggregation      = "Total"
+    operator         = "GreaterThan"
+    threshold        = var.alert_backup_jobs_failed.threshold
   }
   action {
     action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
@@ -20,7 +20,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
   frequency = var.alert_backup_jobs_failed.frequency
 
 
-    lifecycle {
+  lifecycle {
     ignore_changes = [
       # Ignore changes to tags that happen outside of Terraform 
       # to avoid clashing with the Azure policy that already sets them elsewhere
@@ -35,7 +35,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   name                = "BackupJobsCompleted"
   resource_group_name = var.vault_resource_group_name
   scopes              = [data.azurerm_recovery_services_vault.existing.id]
-  
+
   criteria {
     metric_namespace = "Microsoft.RecoveryServices/vaults"
     metric_name      = "BackupJobsCompleted"
@@ -43,14 +43,14 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
     operator         = "Equals"
     threshold        = var.alert_backup_jobs_completed.threshold
   }
-  
+
   action {
     action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
 
   }
 
   frequency = var.alert_backup_jobs_completed.frequency
-  
+
   lifecycle {
     ignore_changes = [
       tags,
@@ -64,7 +64,7 @@ resource "azurerm_monitor_metric_alert" "restore_jobs_failed_alert" {
   name                = "RestoreJobsFailed"
   resource_group_name = var.vault_resource_group_name
   scopes              = [data.azurerm_recovery_services_vault.existing.id]
-  
+
   criteria {
     metric_namespace = "Microsoft.RecoveryServices/vaults"
     metric_name      = "RestoreJobsFailed"
@@ -72,13 +72,13 @@ resource "azurerm_monitor_metric_alert" "restore_jobs_failed_alert" {
     operator         = "GreaterThan"
     threshold        = var.alert_restore_jobs_failed.threshold
   }
-  
+
   action {
     action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
   }
 
   frequency = var.alert_restore_jobs_failed.frequency
-  
+
   lifecycle {
     ignore_changes = [
       tags,
