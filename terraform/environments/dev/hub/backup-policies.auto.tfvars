@@ -1,6 +1,6 @@
 backup_policies = [
   {
-    name        = "daily_backup_policy_1"
+    name        = "weekly-backup-policy-1"
     policy_type = "V2"
     backup = {
       frequency = "Daily"
@@ -11,7 +11,7 @@ backup_policies = [
     }
   },
   {
-    name        = "weekly_backup_policy_1"
+    name        = "weekly-backup-policy-1"
     policy_type = "V2"
     backup = {
       frequency = "Weekly"
