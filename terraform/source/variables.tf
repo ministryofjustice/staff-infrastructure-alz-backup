@@ -31,8 +31,6 @@ variable "remote_state_hub_file" {
   description = "State file name in Storage Account Container"
 }
 
-
-
 variable "action_groups" {
   type = map(object({
     resource_group    = string
@@ -44,8 +42,6 @@ variable "action_groups" {
   description = "Action group definitions."
   default     = null
 }
-
-
 
 variable "vault_resource_group_name" {
   description = "The name of the resource group where the Recovery Services vault and backup policies are located."
@@ -88,3 +84,60 @@ variable "backup_policies" {
     }))
   }))
 }
+
+# Variables for Alerts
+
+# BackupJobsFailed
+variable "alert_backup_jobs_failed" {
+  description = "Configuration for BackupJobsFailed alert"
+  type = object({
+    enabled           = bool
+    threshold         = number
+    frequency         = string
+    action_group_name = string
+  })
+  default = {
+    enabled           = true
+    threshold         = 0
+    frequency         = "PT1H"
+    action_group_name = ""
+  }
+}
+
+# BackupJobsCompleted
+variable "alert_backup_jobs_completed" {
+  description = "Configuration for BackupJobsCompleted alert"
+  type = object({
+    enabled           = bool
+    threshold         = number
+    frequency         = string
+    action_group_name = string
+  })
+  default = {
+    enabled           = true
+    threshold         = 0
+    frequency         = "PT1H"
+    action_group_name = ""
+  }
+}
+
+# RestoreJobsFailed
+variable "alert_restore_jobs_failed" {
+  description = "Configuration for RestoreJobsFailed alert"
+  type = object({
+    enabled           = bool
+    threshold         = number
+    frequency         = string
+    action_group_name = string
+  })
+  default = {
+    enabled           = false
+    threshold         = 0
+    frequency         = "PT1H"
+    action_group_name = ""
+  }
+}
+
+
+
+
