@@ -9,7 +9,7 @@ resource "azurerm_backup_policy_vm" "policy" {
 
   backup {
     frequency     = each.value.backup.frequency
-    time          = each.value.backup.time
+    time          = each.value.backup.date != null ? formatdate("YYYY-MM-DDT${each.value.backup.time}:00Z", each.value.backup.date) : formatdate("YYYY-MM-DDT${each.value.backup.time}:00Z", timestamp())
     hour_interval = lookup(each.value.backup, "hour_interval", null)
     hour_duration = lookup(each.value.backup, "hour_duration", null)
   }

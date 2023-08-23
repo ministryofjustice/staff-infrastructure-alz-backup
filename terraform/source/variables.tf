@@ -68,6 +68,7 @@ variable "backup_policies" {
     policy_type = string
     backup = object({
       frequency     = string
+      date          = optional(string)
       time          = string
       hour_interval = optional(string)
       hour_duration = optional(string)
