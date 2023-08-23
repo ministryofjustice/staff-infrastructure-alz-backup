@@ -14,7 +14,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
     threshold        = var.alert_backup_jobs_failed.threshold
   }
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
+    action_group_id = var.alert_backup_jobs_failed.action_group_name
   }
 
   frequency = var.alert_backup_jobs_failed.frequency
@@ -45,7 +45,7 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
+    action_group_id = var.alert_backup_jobs_failed.action_group_name
 
   }
 
@@ -74,7 +74,7 @@ resource "azurerm_monitor_metric_alert" "restore_jobs_failed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
+    action_group_id = var.alert_backup_jobs_failed.action_group_name
 
   }
 
