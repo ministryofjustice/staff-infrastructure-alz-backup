@@ -15,10 +15,10 @@ backup_policies = [
     policy_type = "V2"
     backup = {
       frequency = "Weekly"
-      time      = "23:00"
+      time      = "22:00"
     }
     retention_weekly = {
-      weekdays = ["Monday"]
+      weekdays = ["Sunday"]
       count    = 4
     }
   }
