@@ -13,7 +13,7 @@ action_groups = {
     logic_app_config = [
       {
         logic_app_function = "teams_integration"
-        logic_app          = "alz_teams_integration_backup"
+        logic_app          = "alz_teams_integration"
       }
     ]
   }
