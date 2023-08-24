@@ -19,6 +19,8 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_failed_alert" {
 
   frequency = var.alert_backup_jobs_failed.frequency
 
+  window_size = "P1D"
+
 
   lifecycle {
     ignore_changes = [
@@ -45,11 +47,12 @@ resource "azurerm_monitor_metric_alert" "backup_jobs_completed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
-
+    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_completed.action_group_name].id
   }
 
   frequency = var.alert_backup_jobs_completed.frequency
+
+  window_size = "P1D"
 
   lifecycle {
     ignore_changes = [
@@ -74,10 +77,12 @@ resource "azurerm_monitor_metric_alert" "restore_jobs_failed_alert" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_backup_jobs_failed.action_group_name].id
+    action_group_id = azurerm_monitor_action_group.alz_mon[var.alert_restore_jobs_failed.action_group_name].id
   }
 
   frequency = var.alert_restore_jobs_failed.frequency
+
+  window_size = "P1D"
 
   lifecycle {
     ignore_changes = [
