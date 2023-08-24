@@ -12,6 +12,7 @@ resource "azurerm_backup_policy_vm" "policy" {
     time          = each.value.backup.time
     hour_interval = lookup(each.value.backup, "hour_interval", null)
     hour_duration = lookup(each.value.backup, "hour_duration", null)
+    weekdays      = each.value.backup.frequency == "Weekly" ? each.value.retention_weekly.weekdays : null
   }
 
   dynamic "retention_daily" {
