@@ -1,5 +1,5 @@
 custom_query_rules = {
-  "backup-failed-errors" = {
+"backup-failed-errors" = {
     description    = "Alert if any backups have failed in last 24 hours"
     resource_group = "rg-hub-core-001"
     location       = "uksouth"
@@ -9,19 +9,18 @@ custom_query_rules = {
     action_group   = "alz"
     kql            = <<-QUERY
       AddonAzureBackupJobs
-        | where JobOperation=="Backup"
-        | summarize arg_max(TimeGenerated,*) by JobUniqueId
-        | where JobStatus=="Failed"
+        | where TimeGenerated > ago(24h) and JobOperation == "Backup" and JobStatus == "Failed"
+        | project JobUniqueId
     QUERY
     criteria = {
       aggregation             = "Count"
-      aggregation_granularity = "PT1H" # Aggregate values into 60 minutes (1 hour) buckets
+      aggregation_granularity = "P1D" # Aggregate values into 24 hours (1 day) buckets
       operator                = "GreaterThan"
-      threshold               = 5
-      measure_column          = null   # not usually needed for "Count" aggregation
-      eval_frequency          = "PT1H" # Run every 60 mins (1 hour)
+      threshold               = 0     # Alert when even a single failed backup is detected
+      measure_column          = null  # not usually needed for "Count" aggregation
+      eval_frequency          = "P1D" # Run every 24 hours (1 day)
     }
-  },
+},
   "no-backups-completed" = {
     description    = "Alert if no backups have been completed in last 24 hours"
     resource_group = "rg-hub-core-001"
