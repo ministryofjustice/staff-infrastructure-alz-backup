@@ -31,13 +31,10 @@ custom_query_rules = {
     severity       = 2
     action_group   = "alz"
     kql            = <<-QUERY
-    AddonAzureBackupJobs
-    | where TimeGenerated > ago(24h) and JobOperation == "Backup"
-    | summarize max(TimeGenerated) by JobUniqueId
-    | where JobStatus == "Completed"
-    | count 
-    | where tostring(0)
-  QUERY
+      AddonAzureBackupJobs
+        | where TimeGenerated > ago(24h) and JobOperation == "Backup" and JobStatus == "Completed"
+        | project JobUniqueId
+    QUERY
     criteria = {
       aggregation             = "Count"
       aggregation_granularity = "P1D"
