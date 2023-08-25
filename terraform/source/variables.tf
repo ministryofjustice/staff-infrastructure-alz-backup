@@ -87,55 +87,31 @@ variable "backup_policies" {
 
 # Variables for Alerts
 
-# BackupJobsFailed
-variable "alert_backup_jobs_failed" {
-  description = "Configuration for BackupJobsFailed alert"
-  type = object({
-    enabled           = bool
-    threshold         = number
-    frequency         = string
-    action_group_name = string
-  })
-  default = {
-    enabled           = true
-    threshold         = 0
-    frequency         = "PT1H"
-    action_group_name = ""
-  }
-}
+# Custom queries (to covery everything else)
 
-# BackupJobsCompleted
-variable "alert_backup_jobs_completed" {
-  description = "Configuration for BackupJobsCompleted alert"
-  type = object({
-    enabled           = bool
-    threshold         = number
-    frequency         = string
-    action_group_name = string
-  })
-  default = {
-    enabled           = true
-    threshold         = 0
-    frequency         = "PT1H"
-    action_group_name = ""
-  }
-}
+variable "custom_query_rules" {
+  type = map(object({
+    description    = string
+    resource_group = string
+    scope          = string
+    location       = string
+    enabled        = bool
+    severity       = number
+    action_group   = string
+    kql            = string
+    criteria = object({
+      aggregation             = string
+      aggregation_granularity = string
+      operator                = string
+      threshold               = number
+      measure_column          = string # not usually needed for "count" aggregation
+      eval_frequency          = string
+    })
 
-# RestoreJobsFailed
-variable "alert_restore_jobs_failed" {
-  description = "Configuration for RestoreJobsFailed alert"
-  type = object({
-    enabled           = bool
-    threshold         = number
-    frequency         = string
-    action_group_name = string
-  })
-  default = {
-    enabled           = false
-    threshold         = 0
-    frequency         = "PT1H"
-    action_group_name = ""
-  }
+
+  }))
+  description = "Configuration for Backup Alerts"
+  default     = null
 }
 
 
