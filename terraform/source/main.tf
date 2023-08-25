@@ -42,7 +42,7 @@ resource "azurerm_backup_policy_vm" "policy" {
 resource "azurerm_backup_protected_vm" "vm" {
   for_each = var.vms
 
-  resource_group_name = data.azurerm_virtual_machine.vm[each.key].resource_group_name
+  resource_group_name = data.azurerm_resource_group.vault.name
   recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
   source_vm_id        = data.azurerm_virtual_machine.vm[each.key].id
   backup_policy_id    = azurerm_backup_policy_vm.policy[each.value.backup_policy].id
