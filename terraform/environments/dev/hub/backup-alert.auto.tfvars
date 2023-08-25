@@ -40,11 +40,11 @@ custom_query_rules = {
   QUERY
     criteria = {
       aggregation             = "Count"
-      aggregation_granularity = "PT24H"
+      aggregation_granularity = "P1D"
       operator                = "Equals"
       threshold               = 0
       measure_column          = null
-      eval_frequency          = "PT24H"
+      eval_frequency          = "P1D"
     }
   }
 }
