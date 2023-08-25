@@ -1,5 +1,5 @@
 custom_query_rules = {
-"backup-failed-errors" = {
+  "backup-failed-errors" = {
     description    = "Alert if any backups have failed in last 24 hours"
     resource_group = "rg-hub-core-001"
     location       = "uksouth"
@@ -20,7 +20,7 @@ custom_query_rules = {
       measure_column          = null  # not usually needed for "Count" aggregation
       eval_frequency          = "P1D" # Run every 24 hours (1 day)
     }
-},
+  },
   "no-backups-completed" = {
     description    = "Alert if no backups have been completed in last 24 hours"
     resource_group = "rg-hub-core-001"
