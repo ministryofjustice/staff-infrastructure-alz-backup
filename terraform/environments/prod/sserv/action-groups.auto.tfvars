@@ -1,6 +1,6 @@
 action_groups = {
   "alz" = {
-    resource_group    = "rg-hub-core-001"
+    resource_group    = "rg-shared-core-001"
     action_group_name = "ag-alz-4ls-backup"
     location          = "global"
 

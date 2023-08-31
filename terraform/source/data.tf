@@ -1,10 +1,12 @@
 data "azurerm_resource_group" "vault" {
   name = var.vault_resource_group_name
+  provider            = azurerm.spoke
 }
 
 data "azurerm_recovery_services_vault" "existing" {
   name                = var.vault_name
   resource_group_name = data.azurerm_resource_group.vault.name
+  provider            = azurerm.spoke
 }
 
 data "azurerm_virtual_machine" "vm" {
@@ -12,6 +14,7 @@ data "azurerm_virtual_machine" "vm" {
 
   name                = each.key
   resource_group_name = each.value.resource_group
+  provider            = azurerm.spoke
 }
 
 # Retrieve data from core ALZ state 
