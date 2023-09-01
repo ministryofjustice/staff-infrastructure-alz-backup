@@ -1,6 +1,6 @@
 
 resource "azurerm_backup_policy_vm" "policy" {
-  provider            = azurerm.spoke
+  provider = azurerm.spoke
   for_each = { for bp in var.backup_policies : bp.name => bp }
 
   name                = each.value.name
@@ -41,7 +41,7 @@ resource "azurerm_backup_policy_vm" "policy" {
 }
 
 resource "azurerm_backup_protected_vm" "vm" {
-  provider            = azurerm.spoke
+  provider = azurerm.spoke
   for_each = var.vms
 
   resource_group_name = data.azurerm_resource_group.vault.name
