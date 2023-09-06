@@ -7,7 +7,7 @@ action_groups = {
     email_config = [
       {
         recipient = "alz-4ls"
-        address   = "alz4ls@justice.gov.uk"
+        address   = "eucs3ls@justice"
       }
     ]
     logic_app_config = [
