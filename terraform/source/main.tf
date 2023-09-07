@@ -34,9 +34,11 @@ resource "azurerm_backup_policy_vm" "policy" {
   dynamic "retention_monthly" {
     for_each = lookup(each.value, "retention_monthly", null) != null ? [each.value.retention_monthly] : []
     content {
-      count = retention_monthly.value.count
+      count    = retention_monthly.value.count
+      weekdays = lookup(retention_monthly.value, "weekdays", null)
+      weeks    = lookup(retention_monthly.value, "weeks", null)
     }
-  }
+}
 
 }
 

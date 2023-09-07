@@ -1,6 +1,6 @@
 backup_policies = [
   {
-    name        = "Policy-4-month-retention"
+    name        = "Policy-12-month-retention"
     policy_type = "V2"
     backup = {
       frequency = "Daily"
@@ -10,13 +10,13 @@ backup_policies = [
       count = 14
     }
     retention_weekly = {
-      weekdays = ["Sunday"]
       count    = 12
+      weekdays = ["Sunday"]
     }
     retention_monthly = {
-      weekdays = ["Sunday"]
-      weeks    = [1]
       count    = 12
+      weekdays = ["Sunday"]
+      weeks    = ["First"]
     }
   }
 ]

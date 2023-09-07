@@ -80,7 +80,9 @@ variable "backup_policies" {
       count    = number
     }))
     retention_monthly = optional(object({
-      count = number
+      count    = number
+      weekdays = optional(list(string))
+      weeks    = optional(list(string))
     }))
   }))
 }
