@@ -3,8 +3,8 @@ backup_policies = [
     name        = "Policy-4-month-retention"
     policy_type = "V2"
     backup = {
-      frequency     = "Daily"
-      time          = "23:00"
+      frequency = "Daily"
+      time      = "23:00"
     }
     retention_daily = {
       count = 14
