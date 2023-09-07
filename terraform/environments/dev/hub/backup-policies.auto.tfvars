@@ -1,25 +1,26 @@
 backup_policies = [
   {
-    name        = "daily-backup-policy-1"
+    name        = "Policy-4-month-retention"
     policy_type = "V2"
     backup = {
-      frequency = "Daily"
-      time      = "20:00"
+      frequency     = "Daily"
+      time          = "23:00"
     }
     retention_daily = {
       count = 14
     }
-  },
-  {
-    name        = "weekly-backup-policy-1"
-    policy_type = "V2"
-    backup = {
-      frequency = "Weekly"
-      time      = "22:00"
-    }
     retention_weekly = {
       weekdays = ["Sunday"]
-      count    = 4
+      count    = 3
+    }
+    retention_monthly = {
+      count = 4
     }
   }
 ]
+# In this example:
+
+# The backup is taken daily at 11:00 PM.
+# Daily backups are retained for 14 days.
+# Weekly backups (taken every Sunday) are retained for 3 weeks.
+# Monthly backups are retained for 4 months.
