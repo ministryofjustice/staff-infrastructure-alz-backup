@@ -11,10 +11,12 @@ backup_policies = [
     }
     retention_weekly = {
       weekdays = ["Sunday"]
-      count    = 3
+      count    = 12
     }
     retention_monthly = {
-      count = 4
+      weekdays = ["Sunday"]
+      weeks    = [1]
+      count    = 12
     }
   }
 ]
