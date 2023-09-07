@@ -38,7 +38,7 @@ resource "azurerm_backup_policy_vm" "policy" {
       weekdays = lookup(retention_monthly.value, "weekdays", null)
       weeks    = lookup(retention_monthly.value, "weeks", null)
     }
-}
+  }
 
 }
 
