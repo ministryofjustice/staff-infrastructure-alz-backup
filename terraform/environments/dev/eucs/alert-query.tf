@@ -1,1 +1,0 @@
-../../../source/alert-query.tf
