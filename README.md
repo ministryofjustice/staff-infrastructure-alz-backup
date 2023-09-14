@@ -44,6 +44,7 @@ This repository includes the following files:
 ### Summary
 
 ## Configuration Files
+
 There are two primary tfvars files that are used to drive the configurations:
 
 - Backup Configuration (backup-policies.auto.tfvars): This file is responsible for defining the backup policies.
@@ -52,6 +53,7 @@ There are two primary tfvars files that are used to drive the configurations:
 ### Attribute Breakdown
 
 ### Backup Configuration (backup-policies.auto.tfvars)
+
 This file defines the backup policies. Here's a brief overview of its attributes:
 
 - `vault_resource_group_name`: The name of the resource group where the Recovery Services Vault resides.
@@ -65,7 +67,9 @@ This file defines the backup policies. Here's a brief overview of its attributes
    vault_name                = "rsv-hub-core-001"
    backup_policies = [...]
 ```
+
 ### VM Assignment ( vm-backup-config-auto.tfvars)
+
 This file assigns the backup policies defined in the backup-policies.auto.tfvars to specific virtual machines. The attributes include
 
 - `vms` : A map of virtual machines, where each VM can be associated with a specific backup policy.
