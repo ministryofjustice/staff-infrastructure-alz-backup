@@ -1,3 +1,6 @@
+vault_resource_group_name = "rg-hub-core-001"
+vault_name                = "rsv-hub-core-001"
+
 backup_policies = [
   {
     name        = "Policy-12-month-retention"
