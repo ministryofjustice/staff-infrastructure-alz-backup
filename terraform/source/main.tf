@@ -50,4 +50,6 @@ resource "azurerm_backup_protected_vm" "vm" {
   recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
   source_vm_id        = data.azurerm_virtual_machine.vm[each.key].id
   backup_policy_id    = azurerm_backup_policy_vm.policy[each.value.backup_policy].id
+
+  depends_on = [azurerm_backup_policy_vm.policy]
 }
