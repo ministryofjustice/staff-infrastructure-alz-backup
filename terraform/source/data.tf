@@ -1,6 +1,6 @@
 data "azurerm_resource_group" "vault" {
-  name = var.vault_resource_group_name
-  provider            = azurerm.spoke
+  name     = var.vault_resource_group_name
+  provider = azurerm.spoke
 }
 
 data "azurerm_recovery_services_vault" "existing" {
