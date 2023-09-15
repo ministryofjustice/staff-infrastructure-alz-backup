@@ -81,3 +81,7 @@ vms = {
   ...
 }
 ```
+
+## Monitoring and Alerting for Backups
+
+Monitoring and alerting for backup jobs is accomplished via Azure Monitor. The Azure Landing Zone alerting repo found at [ALZ alerting repo](https://github.com/ministryofjustice/staff-infrastructure-alz-monitor-alerts) has two sample backup alerts in the [Dev testing](https://github.com/ministryofjustice/staff-infrastructure-alz-monitor-alerts/tree/main/terraform/environments/dev/testing) folder. Update the parameters in the backup alerts section of `custom-query-rules.auto.tfvars` file to configure alerts for your backup jobs.
