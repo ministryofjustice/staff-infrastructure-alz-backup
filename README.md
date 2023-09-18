@@ -38,3 +38,54 @@ This repository includes the following files:
 - Make amendments to the relevant files (fully explained below)
 - Open a PR against `main`
 - Wait for a member of the ALZ team to approve and deploy
+
+## Full Usage
+
+### Summary
+
+## Configuration Files
+
+There are two primary tfvars files that are used to drive the configurations:
+
+- Backup Configuration (backup-policies.auto.tfvars): This file is responsible for defining the backup policies.
+- VM Assignment (vm-backup-config.auto.tfvars): This file assigns specific backup policies to the desired virtual machines.
+
+### Attribute Breakdown
+
+### Backup Configuration (backup-policies.auto.tfvars)
+
+This file defines the backup policies. Here's a brief overview of its attributes:
+
+- `vault_resource_group_name`: The name of the resource group where the Recovery Services Vault resides.
+- `vault_name`: The name of the Recovery Services Vault.
+- `backup_policies`: A list of backup policies, where each policy can have attributes like name, frequency, retention days, etc.
+
+- `Sample`
+
+```
+   vault_resource_group_name = "rg-hub-core-001"
+   vault_name                = "rsv-hub-core-001"
+   backup_policies = [...]
+```
+
+### VM Assignment ( vm-backup-config.auto.tfvars)
+
+This file assigns the backup policies defined in the backup-policies.auto.tfvars to specific virtual machines. The attributes include
+
+- `vms` : A map of virtual machines, where each VM can be associated with a specific backup policy.
+
+- `Sample`
+
+```
+vms = {
+  vm1 = {
+    resource_group = "rg-hub-poltest-01"
+    backup_policy  = "Policy-12-month-retention"
+  }
+  ...
+}
+```
+
+## Monitoring and Alerting for Backups
+
+Monitoring and alerting for backup jobs is accomplished via Azure Monitor. The Azure Landing Zone alerting repo found at [ALZ alerting repo](https://github.com/ministryofjustice/staff-infrastructure-alz-monitor-alerts) has two sample backup alerts in the [Dev testing](https://github.com/ministryofjustice/staff-infrastructure-alz-monitor-alerts/tree/main/terraform/environments/dev/testing) folder. Update the parameters in the backup alerts section of `custom-query-rules.auto.tfvars` file to configure alerts for your backup jobs.
