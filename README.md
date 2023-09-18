@@ -68,7 +68,7 @@ This file defines the backup policies. Here's a brief overview of its attributes
    backup_policies = [...]
 ```
 
-### VM Assignment ( vm-backup-config-auto.tfvars)
+### VM Assignment ( vm-backup-config.auto.tfvars)
 
 This file assigns the backup policies defined in the backup-policies.auto.tfvars to specific virtual machines. The attributes include
 
