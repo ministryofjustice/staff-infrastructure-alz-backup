@@ -5,5 +5,9 @@ vms = {
         resource_group = "rg-eucs-print-azup-001"
         backup_policy  = "Policy-12-month-retention"
         }
-}    
+  vmazup002 = {
+        resource_group = "rg-eucs-print-azup-001"
+        backup_policy  = "Policy-3-month-retention"
+        }
 
+}
