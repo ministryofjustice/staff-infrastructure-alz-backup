@@ -24,5 +24,5 @@ backup_policies = [
 
 # The backup is taken daily at 11:00 PM.
 # Daily backups are retained for 14 days.
-# Weekly backups (taken every Sunday) are retained for 3 weeks.
-# Monthly backups are retained for 4 months.
+# Weekly backups (taken every Sunday) are retained for 12 weeks.
+# Monthly backups are retained for 12 months.
