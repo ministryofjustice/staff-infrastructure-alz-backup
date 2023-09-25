@@ -28,7 +28,7 @@ backup_policies = [
       time      = "20:00"
     }
     retention_daily = {
-      count = 4
+      count = 7
     }
     retention_weekly = {
       count    = 4
