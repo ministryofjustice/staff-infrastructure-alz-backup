@@ -90,5 +90,5 @@ stages:
   #     terraformOperation: ${{ parameters.terraformOperation }}
   #     workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/eucs-uprint
   #     yamlenv: $(prodyamlenv)
-  #     terraformVersion: "1.5.3"
+  #     terraformVersion: "1.5.7"
   #     dependsOn: ["dev"]
