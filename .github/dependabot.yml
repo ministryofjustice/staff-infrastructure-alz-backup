@@ -5,31 +5,16 @@
 
 version: 2
 updates:
-  - package-ecosystem: "bundler"
-    directory: "/"
-    schedule:
-      interval: "daily"
   - package-ecosystem: "terraform"
-    directory: "/terraform"
+    directory: "/terraform/source"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "sunday"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"] # let's have more control over major changes
   - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "gomod"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
