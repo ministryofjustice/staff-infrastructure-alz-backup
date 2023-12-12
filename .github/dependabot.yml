@@ -5,16 +5,17 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  
   - package-ecosystem: "terraform"
     directory: "/terraform/source"
     schedule:
       interval: "weekly"
       day: "sunday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 5 # default, let's see how we go
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"] # let's have more control over major changes
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
