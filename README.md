@@ -88,7 +88,7 @@ protection_policies = list(object({
       })
     }))
 
-    
+    Please look for a sample in Dev/testsub folder of this repository.    
 ```
 
 - `Sample`
