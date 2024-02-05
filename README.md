@@ -6,9 +6,13 @@ This repository contains Terraform code to manage backups for Azure Virtual Mach
 
 The Terraform code in this repository creates backup policies in a specified Recovery Services vault and associates them with existing VMs. Each VM can be in a different resource group, and each VM can have its own backup policy. The backup policies are created separately and can be reused for multiple VMs.
 
+Additionally this repository can also be used to configure backup policies (only) for SQL in Azure Database. The backup policy can then be used to discover and associate a SQL database for `Full`, `Differential` or `Log` backup of the databases as per requirement.
+
 ## Pre-requisites
 
 This configuration is intended for managing backups for existing VMs. The VMs and the Recovery Services vault should already exist in Azure.
+
+For backups of SQL databases on Azure ensure the SQL on Azure VM is a marketplace image. For other SQL deployments please ensure requirements are met as per [backup-azure-sql-database](https://learn.microsoft.com/en-us/azure/backup/backup-azure-sql-database)
 
 ## Usage
 
@@ -16,6 +20,8 @@ The configuration uses several input variables to customize the backup policies 
 Users can specify the details of their VMs and backup policies in a the auto.tfvars files.
 
 - `backup-policies.auto.tfvars`: This contains `backup_policies` which is a list of backup policies. Each item in the list is an object that specifies backup policy.
+
+- `backup-workload-policies.auto.tfvars`: (Optional): This contains `backup_workload_policies` which is a list of backup policies for SQL database. See more details in the Attibute Breakdown section below. Each item in the list is an object that specifies backup policy.
 
 - `vm-backup-config.auto.tfvars`: This contains `vms` which is a A map where each key is a VM name, and each value is an object containing the resource group name and the backup policy name for that VM.
 
@@ -59,6 +65,29 @@ This file defines the backup policies. Here's a brief overview of its attributes
 - `vault_resource_group_name`: The name of the resource group where the Recovery Services Vault resides.
 - `vault_name`: The name of the Recovery Services Vault.
 - `backup_policies`: A list of backup policies, where each policy can have attributes like name, frequency, retention days, etc.
+- `backup_workload_policies` : 
+
+```
+This protection block allows to choose between the various backup types and attibutes are to be specified accordingly.
+Please look at this subsection for guidance.
+
+protection_policies = list(object({
+      policy_type = string // Can be 'Full', 'Differential', or 'Log'
+      backup = object({
+        frequency              = string // Used for 'Full' and 'Differential', ignored for 'Log'
+        time                   = string // Used for 'Full' and 'Differential', ignored for 'Log'
+        frequency_in_minutes   = number // Used for 'Log', should be null or ignored for 'Full' and 'Differential'
+      })
+      retention_daily = object({
+        count = number // Applicable for 'Full' and 'Differential' backups
+      })
+      simple_retention = object({
+        count = number // Used for 'Log' backups
+      })
+    }))
+
+    
+```
 
 - `Sample`
 
