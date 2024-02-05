@@ -8,6 +8,8 @@ The Terraform code in this repository creates backup policies in a specified Rec
 
 Additionally this repository can also be used to configure backup policies (only) for SQL in Azure Database. The backup policy can then be used to discover and associate a SQL database for `Full`, `Differential` or `Log` backup of the databases as per requirement.
 
+Please note at this time discovering and associating SQL DB to the backup workload policy is not possible via terraform azurerm provider. This can thus be done via portal, cli or powershell.
+
 ## Pre-requisites
 
 This configuration is intended for managing backups for existing VMs. The VMs and the Recovery Services vault should already exist in Azure.
