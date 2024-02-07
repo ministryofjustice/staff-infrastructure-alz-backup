@@ -85,7 +85,42 @@ variable "backup_policies" {
       weeks    = optional(list(string))
     }))
   }))
+  default = []
 }
+
+
+# Variable for backup vm workload like sql and saphana
+
+variable "backup_workload_policies" {
+  description = "A list of backup workload policy configurations. Includes support for 'Full', 'Differential', and 'Log' policy types."
+  type = list(object({
+    name                = string
+    resource_group_name = string
+    recovery_vault_name = string
+    workload_type       = string
+    settings = object({
+      time_zone           = string
+      compression_enabled = bool
+    })
+    protection_policies = list(object({
+      policy_type = string // Can be 'Full', 'Differential', or 'Log'
+      backup = object({
+        frequency            = string // Used for 'Full' and 'Differential', ignored for 'Log'
+        time                 = string // Used for 'Full' and 'Differential', ignored for 'Log'
+        frequency_in_minutes = number // Used for 'Log', should be null or ignored for 'Full' and 'Differential'
+      })
+      retention_daily = object({
+        count = number // Applicable for 'Full' and 'Differential' backups
+      })
+      simple_retention = object({
+        count = number // Used for 'Log' backups
+      })
+    }))
+  }))
+  default = []
+}
+
+
 
 # Variables for Alerts
 

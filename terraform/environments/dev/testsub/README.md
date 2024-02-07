@@ -11,8 +11,8 @@
 
 | Name                                                                           | Version |
 | ------------------------------------------------------------------------------ | ------- |
-| <a name="provider_azurerm"></a> [azurerm](#provider_azurerm)                   | 3.64.0  |
-| <a name="provider_azurerm.spoke"></a> [azurerm.spoke](#provider_azurerm.spoke) | 3.64.0  |
+| <a name="provider_azurerm"></a> [azurerm](#provider_azurerm)                   | 3.84.0  |
+| <a name="provider_azurerm.spoke"></a> [azurerm.spoke](#provider_azurerm.spoke) | 3.84.0  |
 | <a name="provider_terraform"></a> [terraform](#provider_terraform)             | n/a     |
 
 ## Modules
