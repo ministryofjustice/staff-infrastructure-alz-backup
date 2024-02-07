@@ -109,7 +109,7 @@ resource "azurerm_backup_protected_vm" "vm" {
 
 
 
-resource "azurerm_backup_policy_vm_workload" "example" {
+resource "azurerm_backup_policy_vm_workload" "backup_workload_policies" {
   provider = azurerm.spoke
   
   for_each = { for idx, policy in var.backup_workload_policies : idx => policy }
