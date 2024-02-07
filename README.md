@@ -70,7 +70,7 @@ This file defines the backup policies. Here's a brief overview of its attributes
 - `backup_workload_policies` : 
 
 ```
-This protection block allows to choose between the various backup types and attibutes are to be specified accordingly.
+This protection block allows to choose between the various backup types and attributes are to be specified accordingly.
 Please look at this subsection for guidance.
 
 protection_policies = list(object({
