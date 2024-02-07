@@ -4,7 +4,7 @@ backup_workload_policies = [
     resource_group_name = "rg-ns-demo-TF"
     recovery_vault_name = "RSV-test-demo"
     workload_type       = "SQLDataBase"
-    settings            = {
+    settings = {
       time_zone           = "UTC"
       compression_enabled = false
     }
@@ -12,8 +12,8 @@ backup_workload_policies = [
       {
         policy_type = "Full"
         backup = {
-          frequency = "Daily"
-          time      = "15:00"
+          frequency            = "Daily"
+          time                 = "15:00"
           frequency_in_minutes = null
         }
         retention_daily = {
@@ -26,8 +26,8 @@ backup_workload_policies = [
       {
         policy_type = "Log"
         backup = {
-          frequency = null
-          time      = null
+          frequency            = null
+          time                 = null
           frequency_in_minutes = 15
         }
         retention_daily = {
