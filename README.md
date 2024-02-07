@@ -67,7 +67,7 @@ This file defines the backup policies. Here's a brief overview of its attributes
 - `vault_resource_group_name`: The name of the resource group where the Recovery Services Vault resides.
 - `vault_name`: The name of the Recovery Services Vault.
 - `backup_policies`: A list of backup policies, where each policy can have attributes like name, frequency, retention days, etc.
-- `backup_workload_policies` : 
+- `backup_workload_policies` :
 
 ```
 This protection block allows to choose between the various backup types and attributes are to be specified accordingly.
@@ -88,7 +88,7 @@ protection_policies = list(object({
       })
     }))
 
-    Please look for a sample in Dev/testsub folder of this repository.    
+    Please look for a sample in Dev/testsub folder of this repository.
 ```
 
 - `Sample`
