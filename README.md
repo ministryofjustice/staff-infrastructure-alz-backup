@@ -25,7 +25,7 @@ Users can specify the details of their VMs and backup policies in a the auto.tfv
 
 - `backup-workload-policies.auto.tfvars`: (Optional): This contains `backup_workload_policies` which is a list of backup policies for SQL database. See more details in the Attribute Breakdown section below. Each item in the list is an object that specifies backup policy.
 
-- `vm-backup-config.auto.tfvars`: This contains `vms` which is a A map where each key is a VM name, and each value is an object containing the resource group name and the backup policy name for that VM.
+- `vm-backup-config.auto.tfvars`: This contains `vms` which is a map where each key is a VM name, and each value is an object containing the resource group name and the backup policy name for that VM.
 
 - `vault_resource_group_name`: The name of the resource group where the Recovery Services vault and backup policies are located.
 
