@@ -61,6 +61,14 @@ variable "vms" {
   }))
 }
 
+
+variable "wk_vms" {
+  description = "Information about the VMs to backup."
+  type = map(object({
+    resource_group = string
+    backup_policy  = string
+  }))
+}
 variable "backup_policies" {
   description = "The backup policies."
   type = list(object({
