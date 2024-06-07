@@ -9,9 +9,4 @@ vms = {
     resource_group = "RG-SMSS-IBASE-001"
     backup_policy  = "daily-backup-policy-1"
   }
-  vm-ibase-sql1 = {
-    resource_group = "RG-SMSS-IBASE-001"
-    backup_policy  = "ibasesqlbackup01"
-  }
-
 }
