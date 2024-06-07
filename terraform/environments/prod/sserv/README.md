@@ -25,6 +25,7 @@ No modules.
 | [azurerm_backup_policy_vm.policy](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/resources/backup_policy_vm) | resource |
 | [azurerm_backup_policy_vm_workload.backup_workload_policies](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/resources/backup_policy_vm_workload) | resource |
 | [azurerm_backup_protected_vm.vm](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/resources/backup_protected_vm) | resource |
+| [azurerm_backup_protected_vm.vm-sql](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/resources/backup_protected_vm) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/data-sources/client_config) | data source |
 | [azurerm_recovery_services_vault.existing](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/data-sources/recovery_services_vault) | data source |
 | [azurerm_resource_group.vault](https://registry.terraform.io/providers/hashicorp/azurerm/3.106.1/docs/data-sources/resource_group) | data source |
