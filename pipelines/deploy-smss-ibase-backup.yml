@@ -48,7 +48,7 @@ variables:
       value: prod_approval
 
 stages:
-# Prod Only so far
+  # Prod Only so far
   - template: azdo/template-terraform-deploy-stage.yml@templates
     parameters:
       backendAzureRmResourceGroupName: "rg-prod-tfstate-001"
