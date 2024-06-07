@@ -54,6 +54,17 @@ resource "azurerm_backup_protected_vm" "vm" {
   depends_on = [azurerm_backup_policy_vm.policy]
 }
 
+resource "azurerm_backup_protected_vm" "vm-sql" {
+  provider = azurerm.spoke
+  for_each = var.vms
+
+  resource_group_name = data.azurerm_resource_group.vault.name
+  recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
+  source_vm_id        = data.azurerm_virtual_machine.vm[each.key].id
+  backup_policy_id    = azurerm_backup_policy_vm_workload.backup_workload_policies[each.value.backup_policy].id
+
+  depends_on = [azurerm_backup_policy_vm.policy]
+}
 ## Backup workload policy resource used for SQL in Azure and SAPHANA workload policies
 
 resource "azurerm_backup_policy_vm_workload" "backup_workload_policies" {
