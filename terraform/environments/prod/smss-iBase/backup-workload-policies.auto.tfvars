@@ -13,7 +13,7 @@ backup_workload_policies = [
         policy_type = "Full"
         backup = {
           frequency            = "Daily"
-          time                 = "15:00"
+          time                 = "22:00"
           frequency_in_minutes = null
         }
         retention_daily = {

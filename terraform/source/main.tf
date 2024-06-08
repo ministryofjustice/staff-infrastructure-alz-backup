@@ -56,7 +56,7 @@ resource "azurerm_backup_protected_vm" "vm" {
 
 resource "azurerm_backup_protected_vm" "vm-sql" {
   provider = azurerm.spoke
-  for_each = var.wk_vms
+  for_each = var.wk_vms != null ? var.wk_vms : {}
 
   resource_group_name = data.azurerm_resource_group.vault.name
   recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
