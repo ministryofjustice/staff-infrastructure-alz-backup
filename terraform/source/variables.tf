@@ -68,6 +68,7 @@ variable "wk_vms" {
     resource_group = string
     backup_policy  = string
   }))
+  default = null
 }
 variable "backup_policies" {
   description = "The backup policies."
