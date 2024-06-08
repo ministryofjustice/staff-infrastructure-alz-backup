@@ -49,7 +49,7 @@ No modules.
 | <a name="input_vault_name"></a> [vault\_name](#input\_vault\_name) | The name of the Recovery Services vault. | `string` | n/a | yes |
 | <a name="input_vault_resource_group_name"></a> [vault\_resource\_group\_name](#input\_vault\_resource\_group\_name) | The name of the resource group where the Recovery Services vault and backup policies are located. | `string` | n/a | yes |
 | <a name="input_vms"></a> [vms](#input\_vms) | Information about the VMs to backup. | <pre>map(object({<br>    resource_group = string<br>    backup_policy  = string<br>  }))</pre> | n/a | yes |
-| <a name="input_wk_vms"></a> [wk\_vms](#input\_wk\_vms) | Information about the VMs to backup. | <pre>map(object({<br>    resource_group = string<br>    backup_policy  = string<br>  }))</pre> | `null` | no |
+| <a name="input_wk_vms"></a> [wk\_vms](#input\_wk\_vms) | Information about the VMs to backup. | <pre>map(object({<br>    resource_group = string<br>    backup_policy  = string<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
