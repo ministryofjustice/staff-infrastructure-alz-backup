@@ -54,12 +54,23 @@ resource "azurerm_backup_protected_vm" "vm" {
   depends_on = [azurerm_backup_policy_vm.policy]
 }
 
+resource "azurerm_backup_protected_vm" "vm-sql" {
+  provider = azurerm.spoke
+  for_each = var.wk_vms != null ? var.wk_vms : {}
+
+  resource_group_name = data.azurerm_resource_group.vault.name
+  recovery_vault_name = data.azurerm_recovery_services_vault.existing.name
+  source_vm_id        = data.azurerm_virtual_machine.vm[each.key].id
+  backup_policy_id    = azurerm_backup_policy_vm_workload.backup_workload_policies[each.value.backup_policy].id
+
+  depends_on = [azurerm_backup_policy_vm_workload.backup_workload_policies]
+}
 ## Backup workload policy resource used for SQL in Azure and SAPHANA workload policies
 
 resource "azurerm_backup_policy_vm_workload" "backup_workload_policies" {
   provider = azurerm.spoke
 
-  for_each = { for idx, policy in var.backup_workload_policies : idx => policy }
+  for_each = { for policy in var.backup_workload_policies : policy.name => policy }
 
   name                = each.value.name
   resource_group_name = each.value.resource_group_name
@@ -84,15 +95,7 @@ resource "azurerm_backup_policy_vm_workload" "backup_workload_policies" {
       }
 
       dynamic "backup" {
-        for_each = protection_policy.value.policy_type == "Full" ? [protection_policy.value.backup] : []
-        content {
-          frequency = backup.value.frequency
-          time      = backup.value.time
-        }
-      }
-
-      dynamic "backup" {
-        for_each = protection_policy.value.policy_type == "Differential" ? [protection_policy.value.backup] : []
+        for_each = protection_policy.value.policy_type != "Log" ? [protection_policy.value.backup] : []
         content {
           frequency = backup.value.frequency
           time      = backup.value.time
@@ -122,3 +125,4 @@ resource "azurerm_backup_policy_vm_workload" "backup_workload_policies" {
     }
   }
 }
+
