@@ -10,11 +10,3 @@ vms = {
     backup_policy  = "daily-backup-policy-1"
   }
 }
-
-wk_vms = {
-  vm-ibase-sql1 = {
-    resource_group = "rg-smss-ibase-001"
-    backup_policy  = "ibasesqlbackup01"
-  }
-
-}
