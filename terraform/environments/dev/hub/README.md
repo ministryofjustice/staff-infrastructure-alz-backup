@@ -25,7 +25,6 @@ No modules.
 | [azurerm_backup_policy_vm.policy](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/resources/backup_policy_vm) | resource |
 | [azurerm_backup_policy_vm_workload.backup_workload_policies](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/resources/backup_policy_vm_workload) | resource |
 | [azurerm_backup_protected_vm.vm](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/resources/backup_protected_vm) | resource |
-| [azurerm_backup_protected_vm.vm-sql](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/resources/backup_protected_vm) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/data-sources/client_config) | data source |
 | [azurerm_recovery_services_vault.existing](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/data-sources/recovery_services_vault) | data source |
 | [azurerm_resource_group.vault](https://registry.terraform.io/providers/hashicorp/azurerm/3.108.0/docs/data-sources/resource_group) | data source |
@@ -49,7 +48,6 @@ No modules.
 | <a name="input_vault_name"></a> [vault\_name](#input\_vault\_name) | The name of the Recovery Services vault. | `string` | n/a | yes |
 | <a name="input_vault_resource_group_name"></a> [vault\_resource\_group\_name](#input\_vault\_resource\_group\_name) | The name of the resource group where the Recovery Services vault and backup policies are located. | `string` | n/a | yes |
 | <a name="input_vms"></a> [vms](#input\_vms) | Information about the VMs to backup. | <pre>map(object({<br>    resource_group = string<br>    backup_policy  = string<br>  }))</pre> | n/a | yes |
-| <a name="input_wk_vms"></a> [wk\_vms](#input\_wk\_vms) | Information about the VMs to backup. | <pre>map(object({<br>    resource_group = string<br>    backup_policy  = string<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
