@@ -1,0 +1,70 @@
+parameters:
+  - name: TerraformOperation
+    displayName: Terraform Operation
+    values:
+      - plan
+      - apply
+    default: plan
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - terraform/source
+      - terraform/environments/prod/smss-dogs
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - terraform/source
+      - terraform/environments/prod/smss-dogs
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: ministryofjustice/staff-infrastructure-alz-ci-templates
+      ref: refs/heads/main
+      endpoint: staff-infrastructure-alz-ci-templates
+
+variables:
+  - group: "github"
+  - name: devyamlenv
+    value: dev_noapproval
+  - name: preprodyamlenv
+    ${{ if eq(variables['Build.Reason'],'PullRequest') }}:
+      value: preprod_noapproval
+    ${{ if ne(variables['Build.Reason'],'PullRequest') }}:
+      value: preprod_approval
+  - name: prodyamlenv
+    ${{ if eq(variables['Build.Reason'],'PullRequest') }}:
+      value: prod_noapproval
+    ${{ if ne(variables['Build.Reason'],'PullRequest') }}:
+      value: prod_approval
+
+stages:
+  # Prod Only so far
+  - template: azdo/template-terraform-deploy-stage.yml@templates
+    parameters:
+      backendAzureRmResourceGroupName: "rg-prod-tfstate-001"
+      backendAzureRmStorageAccountName: "samojtfstate003"
+      backendAzureRmContainerName: "tfstate"
+      backendAzureRmKey: "dogs-vm-backup.terraform.tfstate"
+      backendServiceArm: "scProdVLZ"
+      deployFlag: true
+      environmentName: prod
+      githubPat: $(GITHUB_PAT)
+      stageName: Prod
+      stageDisplayName: Production
+      spokeName: smss-dogs-backup
+      subscription_id: becc4bf3-5028-43e4-8008-06e9362d6b86
+      tenant_id: c6874728-71e6-41fe-a9e1-2e8c36776ad8
+      terraformOperation: ${{ parameters.terraformOperation }}
+      workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/smss-dogs
+      yamlenv: $(prodyamlenv)
+      terraformVersion: "1.5.7"
