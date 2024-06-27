@@ -5,10 +5,10 @@ vault_name                = "rsv-smss-core-001"
 vms = {
   vm-dogs-app01 = {
     resource_group = "rg-smss-dogs-001"
-    backup_policy  = "daily-backup-policy-1"
+    backup_policy  = "daily-backup-policy-dogs"
   }
   vm-dogs-sql01 = {
     resource_group = "rg-smss-dogs-001"
-    backup_policy  = "daily-backup-policy-1"
+    backup_policy  = "daily-backup-policy-dogs"
   }
 }
