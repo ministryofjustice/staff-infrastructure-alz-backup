@@ -1,6 +1,6 @@
 backup_policies = [
   {
-    name        = "daily-backup-policy-1"
+    name        = "daily-backup-policy-dogs"
     policy_type = "V2"
     backup = {
       frequency = "Daily"
