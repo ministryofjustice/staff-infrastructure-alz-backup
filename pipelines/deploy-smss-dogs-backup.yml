@@ -65,6 +65,6 @@ stages:
       subscription_id: becc4bf3-5028-43e4-8008-06e9362d6b86
       tenant_id: c6874728-71e6-41fe-a9e1-2e8c36776ad8
       terraformOperation: ${{ parameters.terraformOperation }}
-      workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/smss-iBase
+      workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/smss-dogs
       yamlenv: $(prodyamlenv)
       terraformVersion: "1.5.7"
