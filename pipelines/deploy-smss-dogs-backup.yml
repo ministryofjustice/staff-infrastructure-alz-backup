@@ -13,6 +13,7 @@ trigger:
   paths:
     include:
       - terraform/source
+      - terraform/environments/dev/smss-dogs
       - terraform/environments/prod/smss-dogs
 
 pr:
@@ -22,6 +23,7 @@ pr:
   paths:
     include:
       - terraform/source
+      - terraform/environments/dev/smss-dogs
       - terraform/environments/prod/smss-dogs
 
 resources:
@@ -48,7 +50,26 @@ variables:
       value: prod_approval
 
 stages:
-  # Prod Only so far
+  - template: azdo/template-terraform-deploy-stage.yml@templates
+    parameters:
+      backendAzureRmResourceGroupName: "rg-terraform-statefiles-001"
+      backendAzureRmStorageAccountName: "samojtfstate001"
+      backendAzureRmContainerName: "tfstate"
+      backendAzureRmKey: "dogs-vm-backup.terraform.tfstate"
+      backendServiceArm: "scVLZ"
+      deployFlag: true
+      environmentName: dev
+      githubPat: $(GITHUB_PAT)
+      stageName: dev
+      stageDisplayName: Development
+      spokeName: smss-dogs-backup
+      subscription_id: 1694d62a-08ca-48d5-93b6-0feb07d8bce3
+      tenant_id: 0bb413d7-160d-4839-868a-f3d46537f6af
+      terraformOperation: ${{ parameters.terraformOperation }}
+      workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/dev/smss-dogs
+      yamlenv: $(devyamlenv)
+      terraformVersion: "1.5.7"
+
   - template: azdo/template-terraform-deploy-stage.yml@templates
     parameters:
       backendAzureRmResourceGroupName: "rg-prod-tfstate-001"
@@ -57,6 +78,7 @@ stages:
       backendAzureRmKey: "dogs-vm-backup.terraform.tfstate"
       backendServiceArm: "scProdVLZ"
       deployFlag: true
+      dependsOn: ["dev"]
       environmentName: prod
       githubPat: $(GITHUB_PAT)
       stageName: Prod
