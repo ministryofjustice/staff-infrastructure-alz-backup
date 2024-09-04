@@ -1,5 +1,3 @@
-
-
 parameters:
   - name: TerraformOperation
     displayName: Terraform Operation
@@ -50,7 +48,6 @@ variables:
       value: prod_approval
 
 stages:
-
   - template: azdo/template-terraform-deploy-stage.yml@templates
     parameters:
       backendAzureRmResourceGroupName: "rg-prod-tfstate-001"
