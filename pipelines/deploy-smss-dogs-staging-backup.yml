@@ -67,4 +67,4 @@ stages:
       terraformOperation: ${{ parameters.terraformOperation }}
       workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/smss-dogs-staging
       yamlenv: $(prodyamlenv)
-      terraformVersion: "1.5.7"
+      terraformVersion: "1.9.8"
