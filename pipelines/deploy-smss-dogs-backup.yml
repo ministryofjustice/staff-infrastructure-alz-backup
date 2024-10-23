@@ -68,7 +68,7 @@ stages:
       terraformOperation: ${{ parameters.terraformOperation }}
       workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/dev/smss-dogs
       yamlenv: $(devyamlenv)
-      terraformVersion: "1.5.7"
+      terraformVersion: "1.9.8"
 
   - template: azdo/template-terraform-deploy-stage.yml@templates
     parameters:
@@ -89,4 +89,4 @@ stages:
       terraformOperation: ${{ parameters.terraformOperation }}
       workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/prod/smss-dogs
       yamlenv: $(prodyamlenv)
-      terraformVersion: "1.5.7"
+      terraformVersion: "1.9.8"

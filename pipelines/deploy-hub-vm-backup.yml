@@ -70,4 +70,4 @@ stages:
       terraformOperation: ${{ parameters.terraformOperation }}
       workingDirectory: $(System.DefaultWorkingDirectory)/staff-infrastructure-alz-backup/terraform/environments/dev/hub
       yamlenv: $(devyamlenv)
-      terraformVersion: "1.5.7"
+      terraformVersion: "1.9.8"
