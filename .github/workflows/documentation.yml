@@ -13,7 +13,7 @@ jobs:
     env:
       ACCESS_TOKEN: ${{ github.actor == 'dependabot[bot]' && secrets.PAT_dependabot01 || secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ env.ACCESS_TOKEN }}
@@ -22,7 +22,7 @@ jobs:
         run: echo "The actor is ${{ github.actor }}"
 
       - name: Render terraform docs and push changes back to PR
-        uses: terraform-docs/gh-actions@main
+        uses: terraform-docs/gh-actions@Aeae0038ed47a547e0c0fca5c059d3335f48fb25 # v1.3.0
         with:
           find-dir: ./terraform
           output-file: README.md
