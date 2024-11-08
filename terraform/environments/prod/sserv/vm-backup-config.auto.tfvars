@@ -9,20 +9,4 @@ vms = {
     resource_group = "rg-shared-ad-001"
     backup_policy  = "daily-backup-policy-1"
   }
-  AZMOJADS004 = {
-    resource_group = "rg-shared-ad-001"
-    backup_policy  = "daily-backup-policy-1"
-  }
-  AZMOJADS005 = {
-    resource_group = "rg-shared-ad-001"
-    backup_policy  = "daily-backup-policy-1"
-  }
-  AZMOJADS006 = {
-    resource_group = "rg-shared-ad-001"
-    backup_policy  = "daily-backup-policy-1"
-  }
-  AZMOJADS007 = {
-    resource_group = "rg-shared-ad-001"
-    backup_policy  = "daily-backup-policy-1"
-  }
 }
