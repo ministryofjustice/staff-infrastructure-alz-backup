@@ -22,7 +22,7 @@ jobs:
         run: echo "The actor is ${{ github.actor }}"
 
       - name: Render terraform docs and push changes back to PR
-        uses: terraform-docs/gh-actions@Aeae0038ed47a547e0c0fca5c059d3335f48fb25 # v1.3.0
+        uses: terraform-docs/gh-actions@aeae0038ed47a547e0c0fca5c059d3335f48fb25 # v1.3.0
         with:
           find-dir: ./terraform
           output-file: README.md
