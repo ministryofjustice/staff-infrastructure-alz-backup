@@ -4,14 +4,14 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | =1.9.8 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.28.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.30.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.28.0 |
-| <a name="provider_azurerm.spoke"></a> [azurerm.spoke](#provider\_azurerm.spoke) | 4.28.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.30.0 |
+| <a name="provider_azurerm.spoke"></a> [azurerm.spoke](#provider\_azurerm.spoke) | 4.30.0 |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
@@ -22,13 +22,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_backup_policy_vm.policy](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/resources/backup_policy_vm) | resource |
-| [azurerm_backup_policy_vm_workload.backup_workload_policies](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/resources/backup_policy_vm_workload) | resource |
-| [azurerm_backup_protected_vm.vm](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/resources/backup_protected_vm) | resource |
-| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/data-sources/client_config) | data source |
-| [azurerm_recovery_services_vault.existing](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/data-sources/recovery_services_vault) | data source |
-| [azurerm_resource_group.vault](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/data-sources/resource_group) | data source |
-| [azurerm_virtual_machine.vm](https://registry.terraform.io/providers/hashicorp/azurerm/4.28.0/docs/data-sources/virtual_machine) | data source |
+| [azurerm_backup_policy_vm.policy](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/resources/backup_policy_vm) | resource |
+| [azurerm_backup_policy_vm_workload.backup_workload_policies](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/resources/backup_policy_vm_workload) | resource |
+| [azurerm_backup_protected_vm.vm](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/resources/backup_protected_vm) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/data-sources/client_config) | data source |
+| [azurerm_recovery_services_vault.existing](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/data-sources/recovery_services_vault) | data source |
+| [azurerm_resource_group.vault](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/data-sources/resource_group) | data source |
+| [azurerm_virtual_machine.vm](https://registry.terraform.io/providers/hashicorp/azurerm/4.30.0/docs/data-sources/virtual_machine) | data source |
 | [terraform_remote_state.alz_core_hub](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
