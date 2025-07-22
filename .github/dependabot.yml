@@ -9,6 +9,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "ministryofjustice/github-actions"
+        # Ignore versions greater than 18.6.0
+        versions: [">=18.6.1"]
   
   - package-ecosystem: "terraform"
     directory: "/terraform/source"
